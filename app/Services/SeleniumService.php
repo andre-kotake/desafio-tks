@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use Exception;
-use Facebook\WebDriver\Chrome\ChromeDriver;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 abstract class SeleniumService
 {
@@ -23,9 +22,9 @@ abstract class SeleniumService
             // $this->driver = ChromeDriver::start($capabilities);
             $this->driver = RemoteWebDriver::create($host, $capabilities);
             Log::info('WebDriver "' . $this->driver->getCapabilities()->getBrowserName() . '" criado com sucesso.');
-        } catch (Exception $e) {
-            Log::error('Não foi possível criar o WebDriver: ' . $e->getMessage());
-            throw $e;
+        } catch (Throwable $th) {
+            Log::error('Não foi possível criar o WebDriver: ' . $th->getMessage());
+            throw $th;
         }
     }
 

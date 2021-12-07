@@ -2,7 +2,7 @@
 
 namespace App\Pages;
 
-use Illuminate\Support\Facades\Storage;
+use Facebook\WebDriver\WebDriverBy;
 
 class UploadPage extends BasePage
 {
@@ -11,15 +11,15 @@ class UploadPage extends BasePage
         return 'https://testpages.herokuapp.com/styled/file-upload-test.html';
     }
 
-    function download()
+    function upload($filePath)
     {
-        $contents = file_get_contents('https://testpages.herokuapp.com' . $this->findElement('//a[@id="direct-download-a"]')->getAttribute('href'));
-        Storage::disk('files')->put('Teste TKS.txt', $contents);
+        $this->getDriver()->findElement(WebDriverBy::id('itsafile'))->click();
 
-        while (!Storage::disk('files')->exists('Teste TKS.txt')) {
-            sleep(1);
-        }
+        $fileInput = $this->getDriver()->findElement(WebDriverBy::id('fileinput'));
+        $this->uploadFile($fileInput, $filePath);
 
-        return storage_path('app/files') . '/Teste TKS.txt';
+        $this->findElement('//input[@type="submit" and @name="upload"]')->click();
+
+        return new UploadProcessorPage();
     }
 }

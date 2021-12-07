@@ -2,12 +2,9 @@
 
 namespace App\Pages;
 
-use Facebook\WebDriver\WebDriverBy;
-
 class HtmlFormPage extends BasePage
 {
     private $formElement;
-
     private function getForm()
     {
         if ($this->formElement == null) {

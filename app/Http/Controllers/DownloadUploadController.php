@@ -13,10 +13,10 @@ class DownloadUploadController extends Controller
         $this->service = $service;
     }
 
-    public function download()
+    public function downloadAndUpload()
     {
         return response()->json([
-            $this->service->download()
+            $this->service->downloadAndUpload()
         ]);
     }
 }

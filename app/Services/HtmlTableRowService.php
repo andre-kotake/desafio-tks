@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\HtmlTableRow;
 use App\Pages\HtmlTablePage;
 use Error;
+use Exception;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class HtmlTableRowService
@@ -18,7 +20,7 @@ class HtmlTableRowService
                 return $rows;
             }
 
-            throw new Error('Erro ao salvar valores.');
+            throw new Exception('Erro ao salvar valores.');
         } catch (Throwable $th) {
             throw $th;
         }

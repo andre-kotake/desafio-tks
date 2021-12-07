@@ -26,9 +26,6 @@ abstract class BasePage
 
     abstract function getUrl(): string;
 
-    /**
-     * Cria a instancia do objeto da página e carrega a página no browser atual.
-     */
     static function get()
     {
         $s = new static();
