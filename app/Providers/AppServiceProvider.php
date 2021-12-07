@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\HtmlFormService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\SeleniumService;
 use App\Services\SeleniumChromeService;
@@ -9,7 +10,7 @@ use App\Services\HtmlTableRowService;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
+    function register()
     {
         $this->app->singleton(SeleniumService::class, function ($app) {
             return new SeleniumChromeService();
@@ -18,9 +19,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(HtmlTableRowService::class, function ($app) {
             return new HtmlTableRowService();
         });
+        
+        $this->app->bind(HtmlFormService::class, function ($app) {
+            return new HtmlFormService();
+        });
     }
 
-    public function boot()
+    function boot()
     {
         //
     }

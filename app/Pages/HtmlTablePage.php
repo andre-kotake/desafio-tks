@@ -4,11 +4,10 @@ namespace App\Pages;
 
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
-use Facebook\WebDriver\WebDriverExpectedCondition;
 
 class HtmlTablePage extends BasePage
 {
-    protected function getUrl(): string
+    function getUrl(): string
     {
         return 'https://testpages.herokuapp.com/styled/tag/table.html';
     }
@@ -18,7 +17,7 @@ class HtmlTablePage extends BasePage
      *
      * @return array
      */
-    public function getTableRowValues(): array
+    function getTableRowValues(): array
     {
         $retorno = array_map(
             function ($row) {
@@ -28,10 +27,7 @@ class HtmlTablePage extends BasePage
                 return array_combine(
                     $tableHeaders,
                     array_map(
-                        function ($rowValue) {
-                            $value = $rowValue->getText();
-                            return $value;
-                        },
+                        fn ($rowValue) => $rowValue->getText(),
                         $rowValues
                     )
                 );
@@ -44,9 +40,7 @@ class HtmlTablePage extends BasePage
 
     private function getTableElement(): WebDriverElement
     {
-        return $this->getDriver()->wait()->until(
-            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::xpath('//table[@id="mytable"]'))
-        );
+        return $this->findElement('//table[@id="mytable"]');
     }
 
     private function getTableColumnHeaders(): array

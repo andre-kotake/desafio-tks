@@ -4,15 +4,24 @@ namespace App\Services;
 
 use App\Models\HtmlTableRow;
 use App\Pages\HtmlTablePage;
+use Error;
+use Throwable;
 
 class HtmlTableRowService
 {
-    public function saveTableToDatabase()
+    function saveTableToDatabase()
     {
         $rows = $this->getTableRows();
-        HtmlTableRow::insert($rows);
 
-        return HtmlTableRow::all();
+        try {
+            if (HtmlTableRow::insert($rows)) {
+                return $rows;
+            }
+
+            throw new Error('Erro ao salvar valores.');
+        } catch (Throwable $th) {
+            throw $th;
+        }
     }
 
     private function getTableRows()
