@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\HtmlDownloadUploadService;
 use App\Services\HtmlFormService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\SeleniumService;
@@ -19,9 +20,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(HtmlTableRowService::class, function ($app) {
             return new HtmlTableRowService();
         });
-        
+
         $this->app->bind(HtmlFormService::class, function ($app) {
             return new HtmlFormService();
+        });
+
+
+        $this->app->bind(HtmlDownloadUploadService::class, function ($app) {
+            return new HtmlDownloadUploadService();
         });
     }
 

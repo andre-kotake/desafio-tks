@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 
 abstract class BasePage
 {
-    private RemoteWebDriver $driver;
+    private $driver;
 
     protected function __construct()
     {
@@ -37,24 +37,24 @@ abstract class BasePage
         return $s;
     }
 
-    protected function getDriver(): RemoteWebDriver
+    protected function getDriver()
     {
         return $this->driver;
     }
 
     function openPage()
     {
-        Log::info('Navigating to: ' . $this->getUrl());
         $this->getDriver()->get($this->getUrl());
         $this->waitUntilUrl();
     }
 
     protected function waitUntilUrl()
     {
-        Log::info('Waiting for ' . $this->getUrl() . ' ...');
+        Log::info('Waiting for ' . $this->getUrl() . ' to load...');
         $this->getDriver()->wait(120)->until(
             WebDriverExpectedCondition::urlIs($this->getUrl())
         );
+        Log::info('Page ' . $this->getUrl() . ' loaded.');
     }
 
     protected function findElement($xpath)
