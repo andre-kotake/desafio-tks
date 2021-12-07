@@ -2,8 +2,6 @@
 
 namespace App\Pages;
 
-use Facebook\WebDriver\WebDriverBy;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class UploadPage extends BasePage

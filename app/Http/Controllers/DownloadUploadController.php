@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\HtmlDownloadUploadService;
+use App\Services\DownloadUploadService;
 
-class HtmlDownloadUploadController extends Controller
+class DownloadUploadController extends Controller
 {
     protected $service;
 
-    public function __construct(HtmlDownloadUploadService $service)
+    public function __construct(DownloadUploadService $service)
     {
         $this->service = $service;
     }
