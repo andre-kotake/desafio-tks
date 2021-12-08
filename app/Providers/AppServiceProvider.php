@@ -8,6 +8,9 @@ use App\Services\HtmlFormService;
 use App\Services\SeleniumService;
 use App\Services\SeleniumChromeService;
 use App\Services\HtmlTableRowService;
+use App\Services\PdfToCsvService;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,9 +28,12 @@ class AppServiceProvider extends ServiceProvider
             return new HtmlFormService();
         });
 
-
         $this->app->bind(DownloadUploadService::class, function ($app) {
             return new DownloadUploadService();
+        });
+
+        $this->app->bind(PdfToCsvService::class, function ($app) {
+            return new PdfToCsvService();
         });
     }
 
