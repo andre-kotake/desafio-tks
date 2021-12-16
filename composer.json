@@ -25,8 +25,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "phpunit/phpunit": "^9.5.10",
-        "php-webdriver/webdriver": "^1.12",
-        "spatie/pdf-to-text": "^1.4"
+        "php-webdriver/webdriver": "^1.12"
     },
     "autoload": {
         "psr-4": {
